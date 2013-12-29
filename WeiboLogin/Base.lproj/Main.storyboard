@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oN9-IB-Kbq">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller - Weibo Login-->
+        <scene sceneID="jif-yQ-o44">
+            <objects>
+                <navigationController title="Weibo Login" definesPresentationContext="YES" id="oN9-IB-Kbq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c3h-bM-2Rw">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="KG1-wj-B1a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gL6-bL-PWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-193" y="91"/>
+        </scene>
+        <!--View Controller - Weibo Login-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="GPJViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tfc-jP-vGI"/>
+                        <viewControllerLayoutGuide type="bottom" id="HMM-PB-IE3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1u-rh-NX4">
+                                <rect key="frame" x="100" y="269" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Login Sina Weibo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3A3-Pv-ud6" kind="push" id="biS-wR-EBN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="a1u-rh-NX4" secondAttribute="centerY" id="mOJ-8p-M48"/>
+                            <constraint firstAttribute="centerX" secondItem="a1u-rh-NX4" secondAttribute="centerX" id="vNI-VO-ps7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Weibo Login" id="Kd3-jX-JSu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="394" y="91"/>
+        </scene>
+        <!--Auth Web View Controller - Weibo OAuth 2.0-->
+        <scene sceneID="zW5-Jp-8nL">
+            <objects>
+                <viewController id="3A3-Pv-ud6" customClass="GPJOAuthWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tw2-Ue-un4"/>
+                        <viewControllerLayoutGuide type="bottom" id="SZW-MB-JL4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gAH-Ez-H6a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3O-ed-nSf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="3A3-Pv-ud6" id="RGc-im-26u"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b3O-ed-nSf" firstAttribute="leading" secondItem="gAH-Ez-H6a" secondAttribute="leading" id="5oE-ap-bCE"/>
+                            <constraint firstAttribute="trailing" secondItem="b3O-ed-nSf" secondAttribute="trailing" id="G53-bH-pDE"/>
+                            <constraint firstItem="b3O-ed-nSf" firstAttribute="top" secondItem="gAH-Ez-H6a" secondAttribute="top" id="gzR-jF-NW2"/>
+                            <constraint firstAttribute="bottom" secondItem="b3O-ed-nSf" secondAttribute="bottom" id="oVW-Ts-9xg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Weibo OAuth 2.0" id="MLs-lN-lpa"/>
+                    <connections>
+                        <outlet property="webView" destination="b3O-ed-nSf" id="6Yq-51-Dc0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rXD-Hc-NLA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="954" y="91"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
