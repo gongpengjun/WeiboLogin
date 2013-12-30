@@ -22,6 +22,7 @@
 		C4CD72941870532200B0BFF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CD72921870532200B0BFF0 /* InfoPlist.strings */; };
 		C4CD72961870532200B0BFF0 /* WeiboLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CD72951870532200B0BFF0 /* WeiboLoginTests.m */; };
 		C4CD72A51870596300B0BFF0 /* GPJOAuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CD72A41870596300B0BFF0 /* GPJOAuthWebViewController.m */; };
+		C4CD72A81870EBC900B0BFF0 /* hook.js in Resources */ = {isa = PBXBuildFile; fileRef = C4CD72A61870E93F00B0BFF0 /* hook.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		C4CD72951870532200B0BFF0 /* WeiboLoginTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiboLoginTests.m; sourceTree = "<group>"; };
 		C4CD72A31870596300B0BFF0 /* GPJOAuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPJOAuthWebViewController.h; sourceTree = "<group>"; };
 		C4CD72A41870596300B0BFF0 /* GPJOAuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPJOAuthWebViewController.m; sourceTree = "<group>"; };
+		C4CD72A61870E93F00B0BFF0 /* hook.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hook.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				C4CD72801870532200B0BFF0 /* GPJViewController.m */,
 				C4CD72A31870596300B0BFF0 /* GPJOAuthWebViewController.h */,
 				C4CD72A41870596300B0BFF0 /* GPJOAuthWebViewController.m */,
+				C4CD72A61870E93F00B0BFF0 /* hook.js */,
 				C4CD72821870532200B0BFF0 /* Images.xcassets */,
 				C4CD72711870532200B0BFF0 /* Supporting Files */,
 			);
@@ -234,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CD72A81870EBC900B0BFF0 /* hook.js in Resources */,
 				C4CD72831870532200B0BFF0 /* Images.xcassets in Resources */,
 				C4CD72751870532200B0BFF0 /* InfoPlist.strings in Resources */,
 				C4CD727E1870532200B0BFF0 /* Main.storyboard in Resources */,
