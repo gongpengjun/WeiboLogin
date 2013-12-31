@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C40FB23218712A4500E73130 /* GPJWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = C40FB23118712A4500E73130 /* GPJWebView.m */; };
+		C40FB23718712CA100E73130 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = C40FB23518712C8C00E73130 /* jquery.min.js */; };
 		C4CD726B1870532100B0BFF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CD726A1870532100B0BFF0 /* Foundation.framework */; };
 		C4CD726D1870532200B0BFF0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CD726C1870532200B0BFF0 /* CoreGraphics.framework */; };
 		C4CD726F1870532200B0BFF0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CD726E1870532200B0BFF0 /* UIKit.framework */; };
@@ -36,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C40FB23018712A4500E73130 /* GPJWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPJWebView.h; sourceTree = "<group>"; };
+		C40FB23118712A4500E73130 /* GPJWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPJWebView.m; sourceTree = "<group>"; };
+		C40FB23518712C8C00E73130 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
 		C4CD72671870532100B0BFF0 /* WeiboLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiboLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CD726A1870532100B0BFF0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C4CD726C1870532200B0BFF0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,7 +129,10 @@
 				C4CD72801870532200B0BFF0 /* GPJViewController.m */,
 				C4CD72A31870596300B0BFF0 /* GPJOAuthWebViewController.h */,
 				C4CD72A41870596300B0BFF0 /* GPJOAuthWebViewController.m */,
+				C40FB23018712A4500E73130 /* GPJWebView.h */,
+				C40FB23118712A4500E73130 /* GPJWebView.m */,
 				C4CD72A61870E93F00B0BFF0 /* hook.js */,
+				C40FB23518712C8C00E73130 /* jquery.min.js */,
 				C4CD72821870532200B0BFF0 /* Images.xcassets */,
 				C4CD72711870532200B0BFF0 /* Supporting Files */,
 			);
@@ -237,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C40FB23718712CA100E73130 /* jquery.min.js in Resources */,
 				C4CD72A81870EBC900B0BFF0 /* hook.js in Resources */,
 				C4CD72831870532200B0BFF0 /* Images.xcassets in Resources */,
 				C4CD72751870532200B0BFF0 /* InfoPlist.strings in Resources */,
@@ -263,6 +272,7 @@
 				C4CD72A51870596300B0BFF0 /* GPJOAuthWebViewController.m in Sources */,
 				C4CD72811870532200B0BFF0 /* GPJViewController.m in Sources */,
 				C4CD72771870532200B0BFF0 /* main.m in Sources */,
+				C40FB23218712A4500E73130 /* GPJWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

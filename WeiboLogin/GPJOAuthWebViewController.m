@@ -26,7 +26,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSString *urlString = @"https://api.weibo.com/oauth2/authorize?client_id=4281529580&response_type=code&redirect_uri=http%3A//www.gongpengjun.com/binding-sina";
+    self.webView.delegate = self;
+    NSString *urlString = @"https://api.weibo.com/oauth2/authorize?client_id=4281529580&response_type=code&redirect_uri=http%3A//www.gongpengjun.com/binding-sina&display=mobile";
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self.webView loadRequest:request];
 }
@@ -35,6 +36,7 @@
 {
     [super viewWillDisappear:animated];
     [self.webView stopLoading];
+    self.webView.delegate = nil;
 }
 
 #pragma mark - UIWebViewDelegate
@@ -57,8 +59,12 @@
                 parameters[key] = value;
         }
         NSLog(@"%s,%d authorize code: %@",__FUNCTION__,__LINE__,parameters[@"code"]);
+        NSString* message = [NSString stringWithFormat:@"Login Successfully.\nauthorize code: %@",parameters[@"code"]];
+        [[[UIAlertView alloc] initWithTitle:@"Info" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:0];
         return NO;
     }
+
     return YES;
 }
 
@@ -78,13 +84,18 @@
         // finished. hide loading progress HUD
         NSLog(@"%s,%d finished successfully",__FUNCTION__,__LINE__);
         
-        NSString* script = @"alert('Load Successfully');";
+        [self injectJavascriptFromFile:@"jquery.min"];
+        
+//        NSString* script = @"document.location = \"http://www.baidu.com/\";";
+//        [self injectJavascriptFromString:script];
+        
+#if 0
+        //NSString* script = @"$('.login_btn').on('click', function(){alert($('#passwd').val());});";
+        NSString* script = @"$('.login_btn').click(function(){alert($('#userId').val()+\":\"+$('#passwd').val());});";
         [self injectJavascriptFromString:script];
-        
-        NSString *jqueryCDN = @"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
-        [self injectJavascriptFromURL:[NSURL URLWithString:jqueryCDN]];
-        
+#else
         [self injectJavascriptFromFile:@"hook"];
+#endif
     }
 }
 
@@ -93,7 +104,15 @@
     _loadRef --;
     if (_loadRef == 0) {
         // finished. hide loading progress HUD
+        
         NSLog(@"%s,%d finished with error: %@",__FUNCTION__,__LINE__,[error localizedDescription]);
+        
+        // Ignore NSURLErrorDomain error -999.
+        if (error.code == NSURLErrorCancelled) return;
+        
+        // Ignore "Fame Load Interrupted" errors. Seen after app store links.
+        if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]) return;
+        
         NSString* script = [NSString stringWithFormat:@"alert('Load Failed: %@');",[error localizedDescription]];
         [self injectJavascriptFromString:script];
     }

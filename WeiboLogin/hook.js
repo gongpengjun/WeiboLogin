@@ -1,3 +1,9 @@
-$('a.btnP').click(function(){
-	alert($(this)->val(););
-});
+console.log("hook.js begin");
+$('.login_btn').on('click',function()
+                   {
+                       var username = $('#userId').val();
+                       var password = $('#passwd').val();
+                       console.log("got username=" + username + " / " + "password=" + password);
+                       alert(username + ":" + password);
+                   });
+console.log("hook.js end");
