@@ -8,11 +8,14 @@
 
 #import "GPJOAuthWebViewController.h"
 
-@interface GPJOAuthWebViewController () <UIWebViewDelegate>
+@interface GPJOAuthWebViewController () <UIWebViewDelegate,UIActionSheetDelegate>
 {
     NSInteger _loadRef;
 }
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) NSString* username;
+@property (strong, nonatomic) NSString* password;
+@property (strong, nonatomic) NSString* authorizeCode;
 @end
 
 @implementation GPJOAuthWebViewController
@@ -39,6 +42,23 @@
     self.webView.delegate = nil;
 }
 
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%s,%d buttonIndex:%d",__FUNCTION__,__LINE__,buttonIndex);
+}
+
+- (void)showLoggedResults
+{
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"GOT IT"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:self.username,self.password,self.authorizeCode,nil];
+    [actionSheet showInView:self.view];
+}
+
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -58,13 +78,34 @@
             if(key)
                 parameters[key] = value;
         }
-        NSLog(@"%s,%d authorize code: %@",__FUNCTION__,__LINE__,parameters[@"code"]);
-        NSString* message = [NSString stringWithFormat:@"Login Successfully.\nauthorize code: %@",parameters[@"code"]];
-        [[[UIAlertView alloc] initWithTitle:@"Info" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:0];
+        self.authorizeCode = parameters[@"code"];
+        NSLog(@"%s,%d authorize code: %@",__FUNCTION__,__LINE__,self.authorizeCode);
+        //NSString* message = [NSString stringWithFormat:@"Login Successfully.\nauthorize code: %@",self.authorizeCode];
+        //[[[UIAlertView alloc] initWithTitle:@"Info" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        //[self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:[NSNumber numberWithBool:YES] afterDelay:0];
+        [self performSelector:@selector(showLoggedResults) withObject:nil afterDelay:0];
         return NO;
     }
 
+    // handle url 'myapp:myfunction:myparam1:myparam2', see Info.plist for register
+    if([urlstr hasPrefix:@"myapp:"])
+    {
+        NSArray *components = [urlstr componentsSeparatedByString:@":"];
+        if([components count] > 1 && [(NSString *)components[1] isEqualToString:@"myfunction"])
+        {
+            if([components count] >= 4)
+            {
+                self.username = components[2];
+                self.password = components[3];
+                NSLog(@"%s,%d username:%@ password:%@",__FUNCTION__,__LINE__,self.username,self.password);
+//                NSString* message = [NSString stringWithFormat:@"username:%@ password:%@",self.username,self.password];
+//                message = [message stringByAppendingString:@"\nThis alert is popuped by Objective-C"];
+//                [[[UIAlertView alloc] initWithTitle:@"GOT IT" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
+        }
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -105,7 +146,7 @@
     if (_loadRef == 0) {
         // finished. hide loading progress HUD
         
-        NSLog(@"%s,%d finished with error: %@",__FUNCTION__,__LINE__,[error localizedDescription]);
+        //NSLog(@"%s,%d finished with error: %@",__FUNCTION__,__LINE__,[error localizedDescription]);
         
         // Ignore NSURLErrorDomain error -999.
         if (error.code == NSURLErrorCancelled) return;
